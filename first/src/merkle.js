@@ -1,6 +1,8 @@
 // search => 다시 물어보기
+// merkle 알고리즘 코드 여러번 쳐보기=================================================
 // npm i merkletreejs
 // npm i crypto-js
+// npm i merkle  //  실질적으로 우리가 사용하는 것
 
 const { MerkleTree } = require('merkletreejs')
 const SHA256 = require('crypto-js/sha256')
@@ -105,5 +107,5 @@ console.log(tree.verify(proof,leaf,root))   // 이 부분 다시 물어보기 ==
    │  └─ 3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d
    └─ 2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6
       └─ 2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6
-
 */
+
