@@ -195,7 +195,7 @@ function getCurrentTime(){
     //Math함수 // Math.floor() // Math.ceil() // 
     //new Date()
     //getTime()
-    return Math.floor(new Date().getTime()/1000)
+    return Math.ceil(new Date().getTime()/1000)
 }
 
 getCurrentTime()
