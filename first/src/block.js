@@ -1,10 +1,10 @@
+//search -> 다시 물어보기 / 해보기
+
 const fs = require('fs') 
 //fs => package.json에 있는 버전 정보를 가져오기 위함
 const merkle = require('merkle')
 const CryptoJs = require('crypto-js')
-const { runInThisContext } = require('vm')
-const { create } = require('domain')
-// 초록색을 class 즉 사용시에 => new
+// 초록색은 class 즉 사용시에 => new
 
 /* 
  < 사용법 > 
@@ -20,8 +20,10 @@ class BlockHeader {
     constructor(version, index, previousHash, time, merkleRoot,){
         this.version = version              // 1 {verion:1}
         this.index = index                  // 2 {version:1, index:2}
-        this.previousHash = previousHash    // 3
-        this.time = time                    // 4
+            // 포인트 ** 
+        this.previousHash = previousHash    // 3    
+            // 마지말 블럭을 가져오고 -> header -> string 연결 -> sha256
+        this.time = time                    // 4    // getCurrentTime()
         this.merkleRoot = merkleRoot        // 5
     }
 }
@@ -63,13 +65,45 @@ Block {
 }
 */
 
+// 링크드리스트 ~블럭을 생성시마다 배열에 집어넣는 행위
+let Blocks = [createGenesisBlock()]
+/*
+console.log(Blocks,'blocksssssssssssss')
+[
+  Block {
+    header: BlockHeader {
+      version: '1.0.0',
+      index: 0,
+      previousHash: '000000',
+      time: 1630467393,
+      merkleRoot: '725C20214587B0DCD5FBF0DCA637904A97A142E89F4A06F55F6B191E333F6B1C'
+    },
+    body: [ 'hello block' ]
+  }
+] blocksssssssssssss
+*/
+function getBlock(){
+    return Blocks
+}
+
+// 배열의 마지막 배열 가져오는 방법
+//Blocks[Blocks.length-1]
+function getLastBlock(){
+    //console.log(Blocks[Blocks.length-1])
+    return Blocks[Blocks.length-1]
+}
+getLastBlock()
+
+// 블록을 추가해주는 함수
+
+
 function createGenesisBlock(){
     // 1. header만들기
         // - 5개의 인자값을 만들어야함
     const version = getVersion()  // 1.1.0
     const index = 0               // 
     const time = getCurrentTime()  //
-    const previousHash = '0'.repeat(6)   // 제네시스 블록은 이전 hash값이 존재하지 않음 // 최초의 블록이므로
+    const previousHash = '0'.repeat(64)   // 제네시스 블록은 이전 hash값이 존재하지 않음 // 최초의 블록이므로
     const body = ['hello block']
 
     const tree = merkle('sha256').sync(body)
@@ -78,8 +112,19 @@ function createGenesisBlock(){
     const header = new BlockHeader(version,index,previousHash,time,root)
     return new Block(header,body)
 }
+ 
 
-const block = createGenesisBlock()   // 제네시스 블록 생성
+// 해보기 =======================
+function addBlock(){
+    
+    const header = new BlockHeader(version,index,previousHash,time,root)
+    let addBlock = new Block(header,body)
+    Blocks.push(addBlock)
+    //console.log(Blocks)
+}
+addBlock()
+
+//const block = createGenesisBlock()   // 제네시스 블록 생성
 /*
 console.log(block)
 Block {
@@ -158,3 +203,5 @@ getCurrentTime()
 /*
  class { header body} // 1차 목표는 제네시스 블록을 만드는 것
 */
+
+
