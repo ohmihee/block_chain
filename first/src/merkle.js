@@ -1,3 +1,4 @@
+// merkletree 개념 참고 사이트 https://www.banksalad.com/contents/%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85%ED%95%98%EB%8A%94-%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-%EB%A8%B8%ED%81%B4%ED%8A%B8%EB%A6%AC-Merkle-Trees-%EB%9E%80-ilULl
 // search => 다시 물어보기
 // merkle 알고리즘 코드 여러번 쳐보기=================================================
 // npm i merkletreejs
@@ -99,6 +100,10 @@ const leaf = SHA256(testRoot)
 const proof = tree.getProof(leaf)  // 인자값으로는 찾을 값 즉 tree안에서 인자값이 존재하는지 아닌지 찾아줌
 console.log(tree.verify(proof,leaf,root))   // 이 부분 다시 물어보기 ========================
 
+const test2Root = 'd'
+const leaf2 = SHA256(test2Root)
+const proof2 = tree.getProof(leaf2)
+console.log(tree.verify(proof2,leaf2,root))
 /*
 //console.log(tree.toString())
 └─ 7075152d03a5cd92104887b476862778ec0c87be5c2fa1c0a90f87c49fad6eff      
