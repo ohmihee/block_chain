@@ -395,3 +395,38 @@ getCurrentTime()
 
 
 //console.log(Blocks)
+
+module.exports = {
+    getBlock,
+    getLastBlock,
+    addBlock,
+    getVersion
+}
+
+/*
+blockchain 네트워크
+P2P
+ -> 프루타
+ -> 당나귀
+ -> 소리바다
+ -> websocket 
+ ~ 클라이언트도 서버에서 서버도 클라이언트에게 요청 가능
+ ~ 모든 요청에 대해 답하지 않아도 됨
+ ~ 즉 쌍방향 통신
+
+클라이언트 - 서버 -> http tcp
+
+------ 0903 할 것
+L 간단한 블록체인 생성
+L 트랜잭션 거래
+L walt
+L 지분증명(PoS, Proof of Stake)
+L 합의 알고리즘
+
+
+---- 0906 이후 할 것
+L 코인 빌드
+L Dapp 비슷한 것 만들기
+
+
+*/
