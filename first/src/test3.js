@@ -48,6 +48,7 @@ function getLastIndex(){
     let {index} = getLastBlock().header
     return index
 }
+
 function addBlock(){
     const version = getVersion()
     const index = getLastIndex() + 1
@@ -81,16 +82,16 @@ function getCurrentTime(){
     return Math.ceil(new Date().getTime()/1000)
 }
 
-function verify(){
+function verify1(){
     const testSet = getBlock().map(v=>v.header.merkleRoot)
-    //console.log(testSet)
+    console.log(testSet)
     const tree = new MerkleTree(testSet)
     const root = tree.getRoot().toString('hex')
     //console.log(root)
-    const testRoot = `hello world3`
+    const testRoot = `hello block`
     const leaf = SHA256(testRoot)
     const proof = tree.getProof(leaf)
     console.log(tree.verify(proof,leaf,root))
 }
-verify()
+verify1()
 //console.log(Blocks)

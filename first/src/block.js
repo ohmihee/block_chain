@@ -92,7 +92,7 @@ function getLastBlock(){
     //console.log(Blocks[Blocks.length-1])
     return Blocks[Blocks.length-1]
 }
-getLastBlock()
+//getLastBlock()
 
 // 블록을 추가해주는 함수
 
@@ -112,17 +112,70 @@ function createGenesisBlock(){
     const header = new BlockHeader(version,index,previousHash,time,root)
     return new Block(header,body)
 }
- 
 
-// 해보기 =======================
-function addBlock(){
-    
-    const header = new BlockHeader(version,index,previousHash,time,root)
-    let addBlock = new Block(header,body)
-    Blocks.push(addBlock)
+
+// 다음블럭의 header와 body를 만들어주는 함수
+function nextBlock(bodydata){
+    // body는 우리가 정하는 것이므로 인자값을 bodydata로 받음
+    const prevBlock = getLastBlock()
+    const version = getVersion()
+    const time = getCurrentTime()
+
+/*
+console.log(prevBlock)
+Block {
+  header: BlockHeader {
+    version: '1.0.0',
+    index: 0,
+    previousHash: '0000000000000000000000000000000000000000000000000000000000000000',
+    time: 1630542165,
+    merkleRoot: '725C20214587B0DCD5FBF0DCA637904A97A142E89F4A06F55F6B191E333F6B1C'
+  },
+  body: [ 'hello block' ]
+}
+*/
+    const index = prevBlock.header.index + 1
+    //console.log(index)   // 1
+    const previousHash = createHash(prevBlock)
+    /*
+    //const previousHash = prevBlock.header.previousHash
+        이전해쉬값
+        version+index+previousHash+timestamp+merkleRoot
+        // 해쉬값을 만들어 주는 것 따로 함수로 만듦
+    */
+    const merkleTree = merkle('sha256').sync(bodydata)  // merkle tree생성
+    const merkleRoot = merkleTree.root() || '0'.repeat(64)
+
+    const header = new BlockHeader(version,index,previousHash,time,merkleRoot)
+    return new Block(header,bodydata)
+
+}
+//nextBlock()
+
+// 각 기능을 함수로 쪼갤 줄 아는 것이 필요 -> 실무에 유용
+// 한 가지 함수에 코드가 너무 긴 것은 좋지 않다 -> 최대한 쪼개는 것이 좋음
+function createHash(block){
+    const {version,index,previousHash,time,merkleRoot} = block.header
+    const blockString = version+index+previousHash+time+merkleRoot
+    const Hash = CryptoJs.SHA256(blockString).toString()
+    return Hash
+}
+
+// Blocks에 push
+// 블럭을 추가하는 기능만
+function addBlock(data){
+    // new header => new block(header,body)
+    const newBlock= nextBlock(data)
+    Blocks.push(newBlock)
+
+    //console.log('addBlock')
+    //const header = new BlockHeader(version,index,previousHash,time,root)
+    //let addBlock = new Block(header,body)
+    //Blocks.push(addBlock)
     //console.log(Blocks)
 }
-addBlock()
+addBlock(['hello world1'])
+addBlock(['hello world2'])
 
 //const block = createGenesisBlock()   // 제네시스 블록 생성
 /*
@@ -205,3 +258,4 @@ getCurrentTime()
 */
 
 
+console.log(Blocks)
