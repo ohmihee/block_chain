@@ -163,10 +163,18 @@ function createHash(block){
 
 // Blocks에 push
 // 블럭을 추가하는 기능만
+// 검증은 addBlock함수에 만드는 것이 좋을 듯 ~ 블럭을 만들다가 내용이 이상하면 블럭이 추가 생성되지 않도록....
 function addBlock(data){
     // new header => new block(header,body)
-    const newBlock= nextBlock(data)
-    Blocks.push(newBlock)
+    const newBlock = nextBlock(data)
+    if(isVailedNewBlock(newBlock,getLastBlock())){
+        // if문 안의 조건이 복잡해서 아예 따로 함수로 빼서 만듦
+        // 첫 번재 인자값으로 새로운 블럭 두번째 인자값으로 생성할 블런 이전의 마지막블럭을 넣엉줌
+        const newBlock = nextBlock(data)
+        Blocks.push(newBlock)
+        return true
+    }
+    return false
 
     //console.log('addBlock')
     //const header = new BlockHeader(version,index,previousHash,time,root)
@@ -175,8 +183,24 @@ function addBlock(data){
     //console.log(Blocks)
 }
 addBlock(['hello world1'])
-addBlock(['hello world2'])
 
+
+function isVailedNewBlock(currentBlock,previousBlock){
+    // 기본적인 검사
+    //  - type 
+    //      ~ 변수 안의 값이 객체 인지 스트링인지 등을 판단하기 위해 / type은 숫자여야함
+    //      검증을 위해 다시 함수를 뺌
+    isVaildType(currentBlock)
+    return true
+
+}
+
+// 타입검사
+function isVaildType(block){
+    // 검사하려는 블럭만 넣어줌 -> 즉 새롭게 생성되는 블럭
+    // 만들때 검사하면 그 이후에는 검증된 것이므로 다시 검증할 필요가 없으므로 새롭게 생성되는 블럭만 검사
+    console.log(block)
+}
 //const block = createGenesisBlock()   // 제네시스 블록 생성
 /*
 console.log(block)
@@ -258,4 +282,4 @@ getCurrentTime()
 */
 
 
-console.log(Blocks)
+//console.log(Blocks)
