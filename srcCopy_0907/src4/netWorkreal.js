@@ -1,3 +1,5 @@
+// 하나의 서버가 server이자 client
+
 // npm install ws
 
 const WebSocket = require('ws')
@@ -106,7 +108,7 @@ function closeConnection(ws) {
 
 // 최초의 접속
 function wsInit() {
-    const server = new WebSocket.Server({ port: wsPORT })
+    const server = new WebSocket.Server({ port: wsPORT })// server
     //server 내가 받은 소켓
     // server.on("why",()=>{})
     server.on("connection", (ws) => {

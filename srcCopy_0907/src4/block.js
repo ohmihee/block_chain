@@ -165,14 +165,16 @@ function replaceBlock(newBlocks) {
     //2.검증을 한번만 하지 않습니다. 랜덤하게 한번만 할수있고,두번할수있고 세번할수도 있게 합니다 -> 조건문에 random 을 쓴다
     //3.Blocks =newBlocks
     //4.broadcast 날립니다.
-
+    console.log('나와라',isVaildBlock(newBlocks))
     if (isVaildBlock(newBlocks) && newBlocks.length > Blocks.length && random.boolean()) {
         console.log(`Blocks 배열을 newBlocks 로 교체합니다`);
         const nw = require('./network')
+
         Blocks = newBlocks
         nw.broadcast(nw.responseLastMsg())
 
     } else {
+        
         console.log(`메세지로 부터 받은 블록배열이 맞지 않습니다.`);
     }
 }
@@ -208,7 +210,9 @@ function isVaildBlock(Blocks) {
         } else {
             return false
         }
+
     }
+    return true
 }
 
 module.exports = {
