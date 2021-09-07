@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">버튼</button>
+    <script type="text/javascript">
+        let bt = document.querySelector('#btn')
+
+        bt.addEventListener('click',()=>{
+            alert('hello world')
+        })
+
+        let callback = (a,b,c) => {
+            // 첫번째 인자값 함수
+            // 두번째 인자값이 실행시간
+            if(c.type="click"){
+                setInterval(a,b)
+            }            
+        }
+        callback(()=>{console.log('hello')},1000,{type:'clcik',data:'null'})
+        // 콜백함수
+        // 첫번째 인자값 실행할 것
+        // 두번째 인자값 실행시간
+        // 세번째 인자값 -> 객체로 넣어줌
+        let callback2 = (number,cb) => {
+            // setTimeout -> 비동기
+            setTimeout(()=>{
+                let sum = 0;
+                for(let i =0; i < number; i++){
+                    sub += i
+                }
+                cb(sum)
+            },1000)
+        }
+    </script>
+</body>
+</html>
