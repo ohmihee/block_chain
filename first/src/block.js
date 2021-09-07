@@ -82,7 +82,7 @@ console.log(Blocks,'blocksssssssssssss')
   }
 ] blocksssssssssssss
 */
-function getBlock(){
+function getBlocks(){
     return Blocks
 }
 
@@ -180,7 +180,7 @@ function addBlock(data){
     //const header = new BlockHeader(version,index,previousHash,time,root)
     //let addBlock = new Block(header,body)
     //Blocks.push(addBlock)
-    //console.log(Blocks)
+    //console.log(Blocks)s
 }
 addBlock(['hello world1'])
 addBlock(['hello world2'])
@@ -397,10 +397,11 @@ getCurrentTime()
 //console.log(Blocks)
 
 module.exports = {
-    getBlock,
+    getBlocks,
     getLastBlock,
     addBlock,
-    getVersion
+    getVersion,
+    isVaildNewBlock,
 }
 
 /*
@@ -415,6 +416,21 @@ P2P
  ~ 즉 쌍방향 통신
 
 클라이언트 - 서버 -> http tcp
+
+P2P
+-> WebSocket
+-> socket.io
+    - 기본기능 외 여러가지가 만들어져 있음
+-> ws (websocket 약자)
+    - 접속에 대한것만 제공 ex)boardcast,to
+
+
+
+
+
+
+
+
 
 ------ 0903 할 것
 L 간단한 블록체인 생성

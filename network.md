@@ -45,7 +45,7 @@
 
     * client -> proxy -> proxy -> server
     * client <- proxy <- proxy <- server 
-        ~ proxy는 게이트웨이 또는 캐시 역할 
+        ~ proxy는 게이트웨이 역할, 프록시 서버 중 일부는 프록시 서버에 요청된 내용을 캐시에 저장하여 동일한 요청시 캐시에 저장된 내용을 전송하여 전송시간과 리소스 사용 절약, 
 
         * 캐시 : HTTP응답(response)들을 일시적으로 저장하는 곳 / 다음 HTTP 요청(request)에서 특정 조건이 만족될 때까지 캐시에 저장된 리소스를 사용 
 

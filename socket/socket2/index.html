@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="메세지를 입력하세요" id="type-text">
+    <button id="btn-send">메시지 전송</button>
+    <button id="btn-close">연결 끊기</button>
+    
+</body>
+<script>
+    const webSocket = new WebSocket("ws://localhost:3005")
+
+    webSocket.onopen = ()=>{
+        console.log('웹소켓서버와 연결성공')
+    }
+    webSocket.onmessage = function (event){
+        console.log(`서버 웹소켓에게 받은 데이터 ${event.data}`)
+    }
+    webSocket.onclose = function(){
+        console.log(`서버 웹소켓 연결 종료`)
+    }
+    webSocket.onerror = function(event){
+        console.log(event)
+    }
+
+    let count = 1
+    
+    document.getElementById('btn-send').onclick=function(){
+        if(webSocket.readyState===webSocket.OPEN){
+            let text = document.getElementById('type-text').value
+            webSocket.send(`${count}${text}`)
+            document.getElementById('type-text').value = ''
+            count++
+        }else{
+            alert('연결된 웹소켓 서버가 없습니다.')
+        }
+    }
+
+    document.getElementById('btn-close').onclick=function(){
+        if(webSocket.readyState===webSocket.OPEN){
+            webSocket.close()
+        }else{
+            alert('연결된 웹소켓 서버가 없습니다.')
+            //ebSocket.open()
+        }
+    }
+
+
+
+</script>
+</html>

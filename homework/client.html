@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/client" method="POST" name="client1" id="client1" value="1">
+        <input type="text" placeholder="client1" id="type-text1">
+        <button type="submit" id="send-msg">메세지 전송</button>
+        <input type="text" id="answer1">
+        <button type="submit" id="dis-connect">연결끊기</button>
+
+    </form>
+    <form action="/client" method="POST" name="client2" id="client2">
+        <input type="text" placeholder="client2" id="type-text2">
+        <button type="submit" id="send-msg">메세지전송</button>
+        <input type="text" id="answer2">
+        <button type="submit" id="dis-connect">연결끊기</button>
+    </form>
+    
+</body>
+<script>
+    const webSocket = new WebSocket("ws://localhost:3010")
+    webSocket.onopen = ()=> {
+        console.log('웹소켓서버와 연결성공')
+    }
+    webSocket.onopen = ()=>{
+        console.log('웹소켓서버와 연결성공')
+    }
+    webSocket.onmessage = function (event){
+        console.log(`서버 웹소켓에게 받은 데이터 ${event.data}`)
+    }
+    webSocket.onclose = function(){
+        console.log(`서버 웹소켓 연결 종료`)
+    }
+    webSocket.onerror = function(event){
+        console.log(event)
+    }
+
+    let count = 1
+     
+    function socket(clientNumber){
+        document.getElementById(`client${clientNumber}`).onsubmit=function(){
+            if(webSocket.readyState===webSocket.OPEN){
+                let text = document.getElementById(`type-text${clientNumber}`).value
+                //console.log(text,'textttttttttttttttt')
+                webSocket.send(text)
+            }else{
+                alert('연결된 웹소켓 서버가 없습니다.')
+            }
+        }
+    }
+    socket(1)
+    socket(2)
+    // document.getElementById('send-msg').onclick=function(){
+    //     if(webSocket.readyState===webSocket.OPEN){
+    //         let text = document.getElementById('client').value
+    //         console.log(text,'texxtttttttttt')
+    //     }
+    // }
+
+    // document.getElementById('send-msg').onclick=function(){
+    //     if(webSocket.readyState===webSocket.OPEN){
+    //         webSocket.close()
+    //     }else{
+    //         alert('연결된 웹소켓 서버가 없습니다.')
+    //         //ebSocket.open()
+    //     }
+    // }
+</script>
+</html>
