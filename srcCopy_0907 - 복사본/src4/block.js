@@ -24,14 +24,6 @@ class Block{
 
 let Blocks = []
 
-function getVersion(){
-    let {version} = JSON.parse(fs.readFileSync('./package.json'))
-    return version
-}
-
-function getCurrentTime(){
-    return Math.ceil(new Date().getTime()/1000)
-}
 
 function createGenesisBlock (){
     const version = "1.0.0"
@@ -48,11 +40,22 @@ function createGenesisBlock (){
     return new Block(header,body)
 }
 
+function getVersion(){
+    let {version} = JSON.parse(fs.readFileSync('./package.json'))
+    return version
+}
+function getCurrentTime(){
+    return Math.ceil(new Date().getTime()/1000)
+}
 function getLastBlock(){
     return Blocks[Blocks.length-1]
 }
-function createHash(){
-    
+function createHash(block){
+    const {version,index,previousHash,time,merkleRoot} = block.header
+    const blockString = version + index + previousHash + time + merkleRoot
+    const Hash = CryptoJs.SHA256(blockString).toString()
+    return Hash
+
 }
 function getDifficulty(){
 
@@ -70,8 +73,13 @@ function hashMatchDifficulty(){
 
 }
 function nextBlock(data){
+    const prevBlock = getLastBlock()
+    const version = getVersion()
+    const index = prevBlock.header.index + 1
+    const previousHash = createHash(prevBlock)
 
-}
+
+}   
 
 
 function isVaildBlock(){

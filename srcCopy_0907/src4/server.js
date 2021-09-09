@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000
 const bodyParser= require('body-parser')
 const bc = require('./block')
 const ws = require(('./network'))
+const wl = require('./wallet')
 
 app.use(bodyParser.json())
 
@@ -50,6 +51,15 @@ app.get("/stop",(req,res)=>{
     process.exit(0)
 })
 
+app.get(`/address`,(req,res)=>{
+    const address = wl.getPublicFromWallet()
+    res.send({address})
+})
+// 서버 실행후 브라우저에서 localhost:3000/address 로 들어감. 
+// 화면에 {"address":"04b78828db84c8e527145d41d19006715c5507b5a0cf9a4f86b7263fc155d9525dd537a3a409b4e35f56e81e6cfe111e9f3215802bb3d5d86fc8ac32df83222bf2"} 출력 
+
+
+wl.initWallet()
 ws.wsInit()
 app.listen(port,()=>{
     console.log(`server start port : ${port}`);
@@ -72,3 +82,4 @@ env | grep 변수명
 curl -X GET http://localhost:3000/blocks | python3 -m json.tool
 
 */
+
