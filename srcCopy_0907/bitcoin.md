@@ -39,6 +39,27 @@ https://github.com/bitcoin/bitcoin.git
 // ls로  makefile이 존재하는 지 확인
 16. make HOST=x86_64-w64-mingw32   -> 빌드를 시작합니다
 // 빌드하는 명령어 -> 시간 좀 오래걸림
+ 
+17. cd ..    
+        -> depends폴더에서 나와서
+18. ./autogen.sh    
+        ->autoget.sh 파일을 실행하라    
+                // depends에서 나온 해당 위치에서 ls 명령어를 입력하고 autogen.sh  파일이 존재하는지 확인
+19. CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/  
+20. makefile생성 확인한 뒤
+21. make -j n   ->  n개의 프로세스로 처리 ex) make -j 4     
+        // make   -> 뒤에 다른 옵션 주지 않고 make만 입력하면 1개의 프로세스로만 처리
+22. sudo bash -c "echo 1 > /proc/sys/fs/binfmt_misc/status"
+23. install 파일을 넣을 디렉토리 선정 (하고)
+24. 위의 디렉토리에서 다시 나와서 bitcoin클론했던 폴더로 다시 들어가서
+// make install DESTDIR=/mnt/c/work        -> make install DESTDIR=window에서 clone한 폴더를 만들려는 경로
+// 위와 같은 위치에서  make deploy
+26. window terminal로 다시 해당 폴더안에서 터미널을 열고 bin / include / lib / share  폴더가 있는 폴더에 data 파일을 생성
+27. window폴더에서 다시 bin 폴더에 들어가서
+28. ./bitcoin-qt.exe -datadir=c:\work\data 명령어 입력  -> bitcoin corerk실행
+// 위의 명령어 실행하면 코인 생성하는 창이 뜨는데 오래 걸리고 계속 켜두면 컴퓨터에 안 좋으므로 그냥 빨리 끌 것
+
+
 
 
 # 오류남
