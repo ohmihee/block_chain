@@ -26,6 +26,8 @@ c++ -> hello.cpp
         // hello -> hello에 기계어를
         // hello.cpp -> hello.cpp파일을
             cat hello입력시 기계어로 변환된 내용을 보여줌
+
+            * -c -> 컴파일할 것
 10. ./hello 터미널에 입력시  hello world출력
 
 
