@@ -60,6 +60,9 @@ https://github.com/bitcoin/bitcoin.git
 // 위의 명령어 실행하면 코인 생성하는 창이 뜨는데 오래 걸리고 계속 켜두면 컴퓨터에 안 좋으므로 그냥 빨리 끌 것
 
 
+** /mnt/ -> window 터미널로 들어가는 것
+
+
 
 
 # 오류남
