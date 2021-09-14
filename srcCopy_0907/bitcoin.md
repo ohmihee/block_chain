@@ -18,7 +18,7 @@ https://github.com/bitcoin/bitcoin.git
 // bsdmainutils   (bsd-main-utils) -> 유닉스계열 운영체제인 bsd의 유틸프로그램을 모음.
 // curl -> http의 요청을 보내줌
 // git -> git 설치해줌 -> 나중에 git clone 가능하게끔
-- sudo apt install nsis
+-       
 
 5. pwd쳐서 경로가 home/algml  즉 홈디렉토리인지 확인
 6. midir workspace   -> workspace폴더 생성
@@ -58,6 +58,9 @@ https://github.com/bitcoin/bitcoin.git
 27. window폴더에서 다시 bin 폴더에 들어가서
 28. ./bitcoin-qt.exe -datadir=c:\work\data 명령어 입력  -> bitcoin corerk실행
 // 위의 명령어 실행하면 코인 생성하는 창이 뜨는데 오래 걸리고 계속 켜두면 컴퓨터에 안 좋으므로 그냥 빨리 끌 것
+
+
+** /mnt/ -> window 터미널로 들어가는 것
 
 
 
