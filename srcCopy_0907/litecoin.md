@@ -61,3 +61,36 @@ messageStart값 변경
 133번째줄 첫번째 글자 설정   
 base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,102);   ->로 바꿈
 https://en.bitcoin.it/wiki/List_of_address_prefixes
+
+
+     ------ 제네시스 블럭을
+15. cd ..   ->ingcoin을 나감  -> workspace로
+16. git clone https://github.com/lhartikk/GenesisH0
+17. cd GensisH0
+        -python 파일이 하나 존재
+18. 파이썬 실행을 위해 python설치를 진행
+// sudo apt install python2  or   sudo apt install python
+// sudo apt install python3
+
+python Genesis.py를 입력시
+```
+Traceback (most recent call last):
+  File "genesis.py", line 2, in <module>
+    import scrypt
+ImportError: No module named scrypt
+```
+이렇게 나오면 된거임
+
+
+sudo apt install python-pip
+sudo apt install python3-pip
+
+home디렉토리 cd~ workspace2/GenesisHo
+curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip2.py
+sudo python get-pip2.py
+//sudo python3 get-pip.py
+--- 어려움 이부분 다시 볼 것========================================================
+
+<!-- //19. sudo pip install scrypt construct==2.5.2 -->
