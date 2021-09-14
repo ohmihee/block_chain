@@ -18,7 +18,7 @@ https://github.com/bitcoin/bitcoin.git
 // bsdmainutils   (bsd-main-utils) -> 유닉스계열 운영체제인 bsd의 유틸프로그램을 모음.
 // curl -> http의 요청을 보내줌
 // git -> git 설치해줌 -> 나중에 git clone 가능하게끔
-- sudo apt install nsis
+-       
 
 5. pwd쳐서 경로가 home/algml  즉 홈디렉토리인지 확인
 6. midir workspace   -> workspace폴더 생성
