@@ -11,6 +11,7 @@
 ** 나의 코인을 만든다는 것...
 3. windows terminal로 가서 wsl cd ~ 홈디렉토리도 이동  (-> 홈디렉토리에서 코인을 만드려는 곳에서/ 나는 home/algml/workspace에서 만들었다.)
 4. git clone -b 0.15 --single-branch https://github.com/litecoin-project/litecoin.git ingcoin_0.0.15
+//git clone -b 0.15 --single-branch https://github.com/litecoin-project/litecoin.git fivecoin_0.0.15
 5. cd ingcoin_0.0.15
 6. sudo apt update
 7. sudo apt upgrade
@@ -30,6 +31,13 @@ find ./ -type f -readable -writable -exec sed -i "s/litecoin/ingcoin/g" {} \;
 find ./ -type f -readable -writable -exec sed -i "s/litecoind/ingcoind/g" {} \;
 find ./ -type f -readable -writable -exec sed -i "s/LITECOIN/INGCOIN/g" {} \;
 find ./ -type f -readable -writable -exec sed -i "s/lites/ings/g" {} \;
+
+find ./ -type f -readable -writable -exec sed -i "s/Litecoin/FIVEcoin/g" {} \;
+find ./ -type f -readable -writable -exec sed -i "s/LiteCoin/fiveCoin/g" {} \;
+find ./ -type f -readable -writable -exec sed -i "s/litecoin/fivecoin/g" {} \;
+find ./ -type f -readable -writable -exec sed -i "s/litecoind/fivecoind/g" {} \;
+find ./ -type f -readable -writable -exec sed -i "s/LITECOIN/FIVECOIN/g" {} \;
+find ./ -type f -readable -writable -exec sed -i "s/lites/fives/g" {} \;
 
 ---------단위 바꾸기-----------------------------------------------------
 find ./ -type f -readable -writable -exec sed -i "s/LTC/ING/g" {} \;
@@ -56,7 +64,7 @@ messageStart값 변경
 [0] = ff
 [1] = d4
 [2] = ca
-[3] = fs
+[3] = f3
 
 
 133번째줄 첫번째 글자 설정   
@@ -73,7 +81,7 @@ https://en.bitcoin.it/wiki/List_of_address_prefixes
 // sudo apt install python2  or   sudo apt install python
 // sudo apt install python3
 
-python Genesis.py를 입력시
+//python genesis.py를 입력시  -> genesis.py파일을 실행하는 것
 ```
 Traceback (most recent call last):
   File "genesis.py", line 2, in <module>
@@ -100,36 +108,15 @@ sudo pip2 install construct
 sudo pip2 install construct==2.5.2
 ==============================================================================================
 // 여기서부터 다시 해보기
-sudo python2 genesis.py -a scrypt -z "hello ingcoin" -t 1631556398
+sudo python2 genesis.py -a scrypt -z "hello fivecoin" -t 1631556398
 // -t -> timestamp
 <!-- //19. sudo pip install scrypt construct==2.5.2 -->
 
 
-<!-- ```
-04ffff001d01040d68656c6c6f20696e67636f696e
-algorithm: scrypt
-merkle hash: e626b891a669ed58da1fb770e6ebf8b05665a60b2311fe7c286a29b917b0b619
-pszTimestamp: hello ingcoin
-pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-time: 1631556376
-bits: 0x1e0ffff0
-Searching for genesis hash..
-2555.0 hash/s, estimate: 466.9 hgenesis hash found!
-nonce: 2015515
-genesis hash: 8c36f3401106465dbd13c50fb29c7d0351f8648695aacd26c21888795a81b11e
-``` -->
+
 ```
-04ffff001d01040d68656c6c6f20696e67636f696e
-algorithm: scrypt
-merkle hash: e626b891a669ed58da1fb770e6ebf8b05665a60b2311fe7c286a29b917b0b619
-pszTimestamp: hello ingcoin
-pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-time: 1631556398
-bits: 0x1e0ffff0
-Searching for genesis hash..
-genesis hash found!
-nonce: 388257
-genesis hash: f0339a023a5d3ec321acbf80514889d288b37de0ae93d801ba80a778935b28f1
+
+
 ```
 // genesis.py파일 -> 블럭 생성을 위해 필요한 data를 만들어 준 것 (블럭을 생성한 것 아님)
 // genesis.py파일을 통해 얻어낸 data를 직접 하드코딩으로 값을 넣어주거나 or 바꿔주어야 한다.
@@ -190,8 +177,21 @@ main = {주석}  test = {주석}
 
 
 
-
-
+////
+python genesis.py -a scrypt -z "hello" -t 1631597655 -n 311972
+```
+04ffff001d01040568656c6c6f
+algorithm: scrypt
+merkle hash: c733692a5e3d40d7e6b7b070372567fcf39379de710c26cdbb07ff42d3d91fe4
+pszTimestamp: hello
+pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
+time: 1631597655
+bits: 0x1e0ffff0
+Searching for genesis hash..
+genesis hash found!
+nonce: 598451
+genesis hash: 980bcd782c3839284badcc7fae27c6f1a74fbd46756fe9a7f042da4ad35ba240
+```
 
 
 
@@ -256,3 +256,58 @@ rpcpassword=1234    // rpc패스워드는 1234
 ==추석 때 과제==============================================================
 // 내 이름으로 빌드해보기
 // 
+
+
+
+
+==========================================================
+sudo python2 genesis.py -a scrypt -z "hello testcoin" -t 1632205906 -n 409330
+```
+
+```
+
+
+python genesis.py -a scrypt -z "hello ingcoin" -t 1631556398
+
+04ffff001d01040d68656c6c6f20696e67636f696e
+algorithm: scrypt
+merkle hash: e626b891a669ed58da1fb770e6ebf8b05665a60b2311fe7c286a29b917b0b619
+pszTimestamp: hello ingcoin
+pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
+time: 1631556398
+bits: 0x1e0ffff0
+Searching for genesis hash..
+genesis hash found!
+nonce: 388257
+genesis hash: f0339a023a5d3ec321acbf80514889d288b37de0ae93d801ba80a778935b28f1
+
+
+
+
+
+python genesis.py -a scrypt -z "hello ingcoin" -t 1631597655 -n 388257
+
+04ffff001d01040d68656c6c6f20696e67636f696e
+algorithm: scrypt
+merkle hash: e626b891a669ed58da1fb770e6ebf8b05665a60b2311fe7c286a29b917b0b619
+pszTimestamp: hello ingcoin
+pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
+time: 1631597655
+bits: 0x1e0ffff0
+Searching for genesis hash..
+2778.0 hash/s, estimate: 429.5 hgenesis hash found!
+nonce: 2463240
+genesis hash: e48b37e14fefb8b3c7dbfcb58c5c1e2746ed489bc56be2b2dd4b553dda7e34a0
+
+
+
+
+
+
+
+
+
+
+
+
+
