@@ -79,5 +79,6 @@ curl -X POST -H "Content-type: application/json" -d '{"method":"getnewaddress","
 4. 비쥬얼 스튜디오 코드 열고 server.js 파일 생성
 5. npm init해서 node.js 환경 만듦
 6. npm install express
+// HTTP로 응답을 줌
 7. npm install request
 // 요청
