@@ -9,6 +9,7 @@ body-parser
 sequelize
 sequelize-cli
 mysql2
+dotenv
 
 * 효율적인 개발환경을 위한 패키지
     - morgan  
@@ -41,6 +42,9 @@ mysql2
 
 npx sequelize init
 // seeder는 필요없으므로 삭제
+
+sequelize-cli model:generate --name User2 --attributes userid:string,userpw:string,username:string
+
 // models폴더의 index.js에서 fs관련한 부분만 오류나지 않도록 삭제 또는 주석처리
 
 2. config폴더에서 DB 연결을 위해 관련 내용 수정
@@ -48,7 +52,26 @@ npx sequelize init
 //
 4. server.js파일 생성후 코드 입력
 5. 서버 킨 후에 실행되는 것 오류 없는지 확인
+6. logger세팅
+7. routes 폴더 생성 index.js 파일 생성
+8. rpc.js 파일 생성
+9. test용 경로 생성 
 
+
+# 거래소란?
+- 코인 계정이 존재해야 -> 지값 생성 가능 -> 코인 거래 가능
+
+- 거래소의 거래는 보통 현금과 코인의 거래
+
+## 
+order table         assetbalance
+buy/sell
+
+
+// 거래처리결과 
+// 매수/매도
+// 가격
+// 수량
 
 
 # 개발 시 효율성 높이는 법

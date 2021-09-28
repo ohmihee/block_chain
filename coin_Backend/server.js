@@ -6,11 +6,14 @@ const {sequelize} = require('./models')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const logger = require('./logger')
-
-
+const router = require('./routes')
+require('dotenv').config('env')
+//require('dotenv').config()
 
 app.set('veiw engine','html')
 nunjucks.configure('views',{express:app})
+
+app.use('/',router)
 
 sequelize.sync({force:true})
 .then(_=>{
@@ -30,9 +33,9 @@ app.use(bodyParser.json())
 
 app.use(express.static('public'))
 
-app.get('/',(req,res)=>{
-    res.render('index.html')
-})
+// app.get('/',(req,res)=>{
+//     res.render('index.html')
+// })
 
 // app.use((req,res,next)=>{
 //     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`)
@@ -55,3 +58,4 @@ app.use((req,res,next)=>{
 app.listen(PORT,()=>{
     logger.info('server start port 3000')
 })
+

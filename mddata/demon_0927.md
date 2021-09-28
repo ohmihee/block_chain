@@ -82,3 +82,18 @@ curl -X POST -H "Content-type: application/json" -d '{"method":"getnewaddress","
 // HTTP로 응답을 줌
 7. npm install request
 // 요청
+// server.js
+```
+app.get('/',()=>{
+    [요청(데몬)]
+    res.send()
+})
+```
+~ 브라우저 요청 -> express -> demon
+// express는 인터페이스의 역할
+// 즉 브라우저와 데몬(서버)간을 연결해주는
+    ~ 데몬을 db라고 생각하면 쉬움
+    ~ 사용자에게 보여줄 데이터를 저장하는 등의 일을 수행하는.
+    ~ express는 최종 결과물만을 보여줌.
+    ~ 브라우저가 express에 요청 -> express는 데몬과 db에 연결 
+// 요청 안에 요청

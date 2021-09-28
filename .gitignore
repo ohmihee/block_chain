@@ -1,4 +1,12 @@
 node_modules**
 node_modules
+/coin_Backend/node_modules
+./coin_Backend/node_modules
 makecoin
 blockchain.md
+eth.md
+config**
+/config
+/coin_Backend/config
+./coin_Backend/config
+.env
