@@ -21,5 +21,12 @@ module.exports = (sequelize,DataTypes) => {
         charset:'utf8mb4',
         collate:'utf8mb4_general_ci'
     })
+    // User.associate = (models) => {
+    //     User.hasMany(models.Assets,{
+    //         foreignKey:'userid',
+    //         onDelete:'cascade',
+    //     })
+    // }
     return User
+    
 }

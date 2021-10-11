@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const { Transaction } = require('sequelize');
 const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
+const basename = path.basename(__filename); 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
@@ -17,6 +18,8 @@ if (config.use_env_variable) {
 }
 
 db.User = require('./user')(sequelize,Sequelize)
+db.Transaction = require('./transaction')(sequelize,Sequelize)
+db.Assets = require('./assets')(sequelize,Sequelize)
 
 // fs
 //   .readdirSync(__dirname)
@@ -34,7 +37,14 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+
+
+// User.init(sequelize)
+// Transaction.init(sequelize)
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+// select * from information_schema.table_constraints where constraint_schema = 'exchange'

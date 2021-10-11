@@ -32,17 +32,17 @@ router.get('/getblockcount',(req,res,next)=>{
     let options = {url,method:"POST",headers,body}
 
     const callback = (err,response,data) => {
-        console.log('callback')
-
+        console.log(data)
         if(err == null && response.statusCode == 200){
             const body = JSON.parse(data)
+
             res.json(body)
         }else{
             logger.error(`/getblockcount error`)
             next()
         }
     }
-    console.log(options)
+    //console.log(options)
     request(options,callback)
 })
 

@@ -5,7 +5,12 @@ const port = process.env.PORT||3200
 const bodyParser = require('body-parser')
 const {sequelize} = require('./models')
 const nunjucks = require('nunjucks')
+const db = require('./models')
 require('dotenv').config()
+
+
+
+
 
 app.set('view engine','html')
 nunjucks.configure('views',{express:app})

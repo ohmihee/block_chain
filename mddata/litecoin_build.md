@@ -4,7 +4,7 @@
 2. git clone -b 0.15 --single-branch https://github.com/litecoin-project/litecoin.git ohcoin_0.0.15
 3. cd ohcoin_0.0.15
 4. sudo apt update
-5. sodo apt upgrade
+5. sudo apt upgrade
 6. sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git
 7. sudo apt install nsis
 8. sudo apt install g++-mingw-w64-x86-64
@@ -19,7 +19,7 @@
 - find ./ -type f -readable -writable -exec sed -i "s/lites/ohs/g" {} \;
 11. 단위 바꾸기 
 - find ./ -type f -readable -writable -exec sed -i "s/LTC/ING/g" {} \;
-- find ./ -type f -readable -writable -exec sed -i "s/photons/iphotons/g" {} \;
+- find ./ -type f -readable -writable -exec sed -i "s/photons/zphotons/g" {} \;
 12. 포트변경하기
 - find ./ -type f -print0 | xargs -0 sed -i "s/9333/9233/g"
 - find ./ -type f -print0 | xargs -0 sed -i "s/9332/9232/g"
@@ -41,7 +41,8 @@
 - sudo python get-pip.py
     -> 위의 명령어들을 실행 후 pip --version을 입력하여 설치여부 확인
 - sudo pip install scrypt construct==2.5.2
-- sudo python genesis.py -a scrypt -z "hello ohcoin" -t 1632640342
+- sudo python genesis.py -a scrypt -z "hello chocoin" -t 1632908922
+// https://www.unixtimestamp.com/
 ```
 04ffff001d01040c68656c6c6f206f68636f696e
 algorithm: scrypt
@@ -73,6 +74,7 @@ genesis hash: f804a2ffcf64d83f46e7790bec86a2fe4d569f88ed0f1bad6c8a189ea11a6304
 19. testnet에서 나온 값으로 코드 수정
 // 블로그 내용 참고
 // https://velog.io/@nara7875/blockchainlitecoin-build%ED%95%98%EA%B8%B0#4%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0
+// src/consensus.h   ---> 19번째 줄 100을 5로 바꾸기
 
 / 터미널에 입력( 리눅스 환경 )
 
@@ -122,11 +124,14 @@ genesis hash: f804a2ffcf64d83f46e7790bec86a2fe4d569f88ed0f1bad6c8a189ea11a6304
 // 위와 같은 식으로 conf파일을 대체할 수 있도록 직접 data를 입력해서 데몬 실행
 37. 윈도우 터미널을 추가로 하나 더 열고(리눅스 아님)   //클라이언트용 터미널
 ./fivecoin-cli.exe -conf="C:\Users\오미희\fivecoin_work\bin\fivecoin1.conf" getbalance
+// 위와 같은 명령어를 통해 데몬에 연결하려 하는데 실패하는 경우
+ - conf파일 경로를 잘못 설정하는 경우
+ - conf파일의 확장자가 잘못 설정된 경우 .conf로 잘 되어있는지 확인하기 .txt가 아닌 모든 파일로 바꾸어주기
 // 기본으로  ./fivecoin-cli.exe -conf="C:\Users\오미희\fivecoin_work\bin\fivecoin1.conf" 에다가 뒤에 추가적으로 실행할 명령어 입력
 // getbalance는 현재 내가 가진 코인 잔액을 보여줌
 * 그 외 명령어
 // getbalance
-// getnewaddres
+// getnewaddress
 // listaccounts
 // generate
  ./fivecoin-cli.exe -conf="C:\Users\오미희\fivecoin_work\bin\fivecoin1.conf" generate 10
@@ -145,7 +150,7 @@ rpcport=3000
 rpcuser=mihee
 rpcpassword=1234
 rpctimeout=600
-rpcallowip=127.0.0.1
+rpcallowip=127.0.0.1+++++
 addnode=127.0.0.1:9233
  ``` 
  // 내용에 대한 해석 블로그 참고
@@ -153,7 +158,7 @@ addnode=127.0.0.1:9233
  39. data2에 대해서도 데몬 실행하고 클라이언트 연결후 블럭 생성
  // 두번째 node에 대한 작업 후에
  40. getnewaddress   ==>  노드에 주소 생성
- ./fivecoin-cli.exe -conf="C:\Users\오미희\fivecoin_work\bin\fivecoin2.conf" getnewaddress agml
+ ./fivecoin-cli.exe -conf="C:\Users\오미희\fivecoin_work\bin\fivecoin2.conf" getnewaddress algml
  // 위와 같은 명령어 입력시  -> i92fEaQGCaP4NDuxAV5iVczA1W51WSHVdF  의 내용 출력
  // 주소값 잃어버린 경우 getaddressesbyaccount  를 통해 주소값 다시 찾기 가능 
  // 참고 https://velog.io/@nara7875/BlockChain%EC%BD%94%EC%9D%B8%EA%B0%84-%EA%B1%B0%EB%9E%98
